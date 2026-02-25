@@ -5,7 +5,7 @@ with open('requirements.txt') as f:
 
 setup(
     name='openmmslicer',
-    version='3.1.0',
+    version='3.0.0',
     packages=find_packages(),
     install_requires=requirements,
     url='',
