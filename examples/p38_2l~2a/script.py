@@ -48,15 +48,15 @@ structure0 = pmd.load_file(path + "LigA.top", xyz=path + "LigA.gro")
 structure1 = pmd.load_file(path + "LigB.top", xyz=path + "LigB.gro")
 
 # align the structures with a supplied maximum common substructure
-mcs = [(42, 0), (47, 26), (48, 27), (43, 28), (21, 1), (1, 2), (3, 3), (0, 16), (40, 34), (2, 17),
-       (7, 18), (23, 20), (41, 35), (8, 21), (35, 36), (9, 22), (25, 37), (26, 38), (24, 23), (33, 42),
-       (34, 43), (30, 41), (27, 24), (31, 44), (32, 45), (10, 25), (28, 39), (29, 40), (22, 19), (4, 4),
-       (38, 29), (5, 5), (19, 8), (11, 9), (12, 10), (36, 30), (13, 11), (37, 31), (14, 12), (17, 15),
-       (15, 13), (39, 32), (16, 14), (18, 33), (6, 6), (20, 7)]
+mcs = [(0, 0), (2, 2), (7, 7), (22, 22), (1, 1), (3, 3), (4, 4), (5, 5), (6, 6), (21, 21),
+       (42, 42), (47, 43), (48, 44), (43, 45), (20, 20), (19, 19), (11, 11), (12, 12), (13, 13), (14, 14),
+       (15, 15), (16, 16), (18, 18), (39, 39), (17, 17), (37, 37), (36, 36), (38, 38), (23, 23), (8, 8),
+       (9, 9), (25, 25), (26, 26), (24, 24), (33, 33), (34, 34), (30, 30), (27, 27), (10, 10), (28, 28),
+       (29, 29), (31, 31), (32, 32), (35, 35), (41, 41), (40, 40)]
 
 aligned_structures = AlignedStructures(
-    "2i", structure0, path + "LigA.gro")
-aligned_structures.addStructure("2g", structure1, mcs, residue="LIG")
+    "2l", structure0, path + "LigA.gro")
+aligned_structures.addStructure("2a", structure1, mcs, residue="LIG")
 
 # set MD configuration
 md_config = {
@@ -100,19 +100,19 @@ moves = [
 
 # this part checks where we are perturbing bond lengths and prints out the indices
 perturbed_bonds = []
-for bond0, bond1 in zip(aligned_structures["2i"].bonds, aligned_structures["2g"].bonds):
+for bond0, bond1 in zip(aligned_structures["2l"].bonds, aligned_structures["2a"].bonds):
     if bond0.type != bond1.type:
         perturbed_bonds += [(bond0.atom1.idx, bond0.atom2.idx)]
 print("Perturbing bonds:", perturbed_bonds)
 
 # here we create BondMoves based on the perturbed bond indices
-bonded_moves = [BondMove(aligned_structures, (i, j), "2i", "2g") for i, j in perturbed_bonds]
+bonded_moves = [BondMove(aligned_structures, (i, j), "2l", "2a") for i, j in perturbed_bonds]
 
 # Finally define the linear Markov chain in terms of the connected states and the corresponding moves
 if args.enhanced:
-    alch_chain =  AlchemicalChain(aligned_structures, [("2i", moves),("2i", bonded_moves), ("2g", bonded_moves)])
+    alch_chain =  AlchemicalChain(aligned_structures, [("2l", moves),("2l", bonded_moves), ("2a", bonded_moves)])
 else:
-    alch_chain =  AlchemicalChain(aligned_structures, [("2i", bonded_moves), ("2g", bonded_moves)])
+    alch_chain =  AlchemicalChain(aligned_structures, [("2l", bonded_moves), ("2a", bonded_moves)])
 
 # check if a previously pickled checkpoint has been written
 pickle_filename = current_dirname + "checkpoint.pickle"
