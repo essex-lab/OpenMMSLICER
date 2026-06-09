@@ -18,7 +18,7 @@ dependencies:
     - cma
     - dill
     - stdio-proxy
-    - parmed=
+    - parmed
   
 
 
