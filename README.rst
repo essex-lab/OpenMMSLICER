@@ -9,12 +9,17 @@ FAST combines adaptive alchemical sequential Monte Carlo (AASMC) with a variatio
 
 Installation
 ------------
-
-This package requires OpenMM and OpenMMTools. Afterwards, it can be installed by running ``setup.py``:
+OpenMMSLICER can be installed by creating the provided **conda/mamba** environment and then installing the package with **pip**:
 
 .. code-block:: bash
 
-    python setup.py install
+    git clone https://github.com/essex-lab/OpenMMSLICER.git
+    cd OpenMMSLICER
+
+    conda env create -f environment.yml 
+    conda activate openmmslicer
+
+    python -m pip install .
 
 
 Getting Started
