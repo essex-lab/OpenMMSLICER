@@ -1,0 +1,24 @@
+name: openmmslicer
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pip
+  - mdtraj
+  - numba
+  - numpy
+  - openmm=8.0.0
+  - scipy
+  - openmmtools=0.22.1
+  - pandas
+  - matplotlib-base
+  - pip:
+    - cached-property
+    - cachetools
+    - cma
+    - dill
+    - stdio-proxy
+    - parmed
+  
+
+
