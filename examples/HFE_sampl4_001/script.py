@@ -23,7 +23,7 @@ parser.add_argument('-n', '--number', default=1, type=int, help="A unique ID par
 args = parser.parse_args()
 
 # set up current working directory and logging
-path = os.getcwd() + f"/sampl4_001/{args.leg}/" 
+path = os.getcwd() + f"/{args.leg}/" 
 current_dirname = path + f"Run_{args.number}/"
 os.makedirs(current_dirname, exist_ok=True)
 logging.basicConfig(filename=current_dirname + "log.txt", filemode="a", level=logging.DEBUG)
