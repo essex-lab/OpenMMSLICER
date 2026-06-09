@@ -5,7 +5,7 @@ Here you can find some examples to help you get started with OpenMMSLICER.
 
 .. toctree::
     Examples.FAST_HFE.sampl4_001
-    Examples.FAST_RBFE.p38_2l~2a
+    Examples.FAST_RBFE.p38_2l_2a
     Examples.FAST_RBFE.PTP1B
     Examples.AASMC_only.Butene
     Examples.AASMC_only.T4_lysozyme_Val111
