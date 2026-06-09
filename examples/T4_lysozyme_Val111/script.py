@@ -106,7 +106,7 @@ ensemble.run(n_equilibrations=1,
              n_transforms_per_walker=100,
              sampling_metric=EnergyCorrelation,
              resampling_metric=WorstCaseSampleSize,
-             target_metric_value=100,
+             target_metric_value=100 / (500 * 100),
              default_decorrelation_steps=500)
 
 # Finally write a checkpoint which dumps the whole ensemble object and can be used for free energy analysis
